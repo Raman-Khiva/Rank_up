@@ -193,7 +193,7 @@ export function ResizableTable({
 
   const ITEMS_PER_PAGE = 10;
 
-  useEffect(() => {
+ (() => {
     setMounted(true);
   }, []);
 
@@ -267,7 +267,7 @@ export function ResizableTable({
         },
         "inactive": {
           bgColor: "bg-red-500/10",
-          borderColor: "border-red-500/30",
+          borderColor: "ed-500/30",
           textColor: "text-red-400",
           dotColor: "bg-red-400"
         },
@@ -290,7 +290,7 @@ export function ResizableTable({
       },
       "inactive": {
         bgColor: isDark ? "bg-red-500/10" : "bg-red-50",
-        borderColor: isDark ? "border-red-500/30" : "border-red-200",
+        borderColor: isDark ? "ed-500/30" : "ed-200",
         textColor: isDark ? "text-red-400" : "text-red-600",
         dotColor: isDark ? "bg-red-400" : "bg-red-600"
       },
@@ -506,7 +506,7 @@ export function ResizableTable({
             <div
               className="flex py-3 text-xs font-medium text-muted-foreground/60 bg-muted/5 border-b border-border">
               <div
-                className="flex items-center justify-center border-r border-border pr-3"
+                className="flex items-center justify-center  border-border pr-3"
                 style={{ width: columnWidths.checkbox }}>
                 <input
                   type="checkbox"
@@ -527,7 +527,7 @@ export function ResizableTable({
                 handle={<div
                   className="absolute right-0 top-0 bottom-0 w-1 hover:w-1.5 cursor-col-resize bg-transparent hover:bg-primary/40 transition-all" />}>
                 <div
-                  className="flex items-center border-r border-border px-3 relative"
+                  className="flex items-center  border-border px-3 relative"
                   style={{ width: columnWidths.name }}>
                   <span>{title}</span>
                 </div>
@@ -542,7 +542,7 @@ export function ResizableTable({
                 handle={<div
                   className="absolute right-0 top-0 bottom-0 w-1 hover:w-1.5 cursor-col-resize bg-transparent hover:bg-primary/40 transition-all" />}>
                 <div
-                  className="flex items-center gap-1.5 border-r border-border px-3 relative"
+                  className="flex items-center gap-1.5  border-border px-3 relative"
                   style={{ width: columnWidths.email }}>
                   <svg
                     width="14"
@@ -574,7 +574,7 @@ export function ResizableTable({
                 handle={<div
                   className="absolute right-0 top-0 bottom-0 w-1 hover:w-1.5 cursor-col-resize bg-transparent hover:bg-primary/40 transition-all" />}>
                 <div
-                  className="flex items-center gap-1.5 border-r border-border px-3 relative"
+                  className="flex items-center gap-1.5  border-border px-3 relative"
                   style={{ width: columnWidths.department }}>
                   <svg
                     width="14"
@@ -601,7 +601,7 @@ export function ResizableTable({
                 handle={<div
                   className="absolute right-0 top-0 bottom-0 w-1 hover:w-1.5 cursor-col-resize bg-transparent hover:bg-primary/40 transition-all" />}>
                 <div
-                  className="flex items-center gap-1.5 border-r border-border px-3 relative"
+                  className="flex items-center gap-1.5  border-border px-3 relative"
                   style={{ width: columnWidths.position }}>
                   <svg
                     width="14"
@@ -628,7 +628,7 @@ export function ResizableTable({
                 handle={<div
                   className="absolute right-0 top-0 bottom-0 w-1 hover:w-1.5 cursor-col-resize bg-transparent hover:bg-primary/40 transition-all" />}>
                 <div
-                  className="flex items-center gap-1.5 border-r border-border px-3 relative"
+                  className="flex items-center gap-1.5  border-border px-3 relative"
                   style={{ width: columnWidths.salary }}>
                   <svg
                     width="14"
@@ -655,7 +655,7 @@ export function ResizableTable({
                 handle={<div
                   className="absolute right-0 top-0 bottom-0 w-1 hover:w-1.5 cursor-col-resize bg-transparent hover:bg-primary/40 transition-all" />}>
                 <div
-                  className="flex items-center gap-1.5 border-r border-border px-3 relative"
+                  className="flex items-center gap-1.5  border-border px-3 relative"
                   style={{ width: columnWidths.hireDate }}>
                   <svg
                     width="14"
@@ -710,16 +710,14 @@ export function ResizableTable({
                 variants={shouldAnimate ? containerVariants : {}}
                 initial={shouldAnimate ? "hidden" : "visible"}
                 animate="visible">
-                {paginatedEmployees.map((employee) => (
+                {paginatedEmployees.map((employee,index) => (
                   <motion.div key={employee.id} variants={shouldAnimate ? rowVariants : {}}>
                     <div
-                      className={`py-3.5 group relative transition-all duration-150 border-b border-border flex ${
-                        selectedEmployees.includes(employee.id)
-                          ? "bg-muted/30" 
-                          : "bg-muted/5 hover:bg-muted/20"
-                      }`}>
+                      className={`py-3.5 group relative transition-all duration-150 border-b border-border flex 
+                      ${(index%2)?"bg-muted/30" : ""}
+`}>
                       <div
-                        className="flex items-center justify-center border-r border-border pr-3"
+                        className="flex items-center justify-center  border-border pr-3"
                         style={{ width: columnWidths.checkbox }}>
                         <input
                           type="checkbox"
@@ -732,13 +730,13 @@ export function ResizableTable({
                       </div>
 
                       <div
-                        className="flex items-center min-w-0 border-r border-border px-3"
+                        className="flex items-center min-w-0  border-border px-3"
                         style={{ width: columnWidths.name }}>
                         <span className="text-sm text-foreground truncate">{employee.name}</span>
                       </div>
 
                       <div
-                        className="flex items-center min-w-0 border-r border-border px-3"
+                        className="flex items-center min-w-0  border-border px-3"
                         style={{ width: columnWidths.email }}>
                         <a
                           href={`mailto:${employee.email}`}
@@ -749,7 +747,7 @@ export function ResizableTable({
                       </div>
 
                       <div
-                        className="flex items-center border-r border-border px-3"
+                        className="flex items-center  border-border px-3"
                         style={{ width: columnWidths.department }}>
                         <span className="text-sm text-foreground/80 truncate">
                           {employee.department}
@@ -757,7 +755,7 @@ export function ResizableTable({
                       </div>
 
                       <div
-                        className="flex items-center min-w-0 border-r border-border px-3"
+                        className="flex items-center min-w-0  border-border px-3"
                         style={{ width: columnWidths.position }}>
                         <span className="text-sm text-foreground/80 truncate">
                           {employee.position}
@@ -765,7 +763,7 @@ export function ResizableTable({
                       </div>
 
                       <div
-                        className="flex items-center border-r border-border px-3"
+                        className="flex items-center  border-border px-3"
                         style={{ width: columnWidths.salary }}>
                         <span className="text-sm font-semibold text-foreground/90">
                           {formatCurrency(employee.salary)}
@@ -773,7 +771,7 @@ export function ResizableTable({
                       </div>
 
                       <div
-                        className="flex items-center border-r border-border px-3"
+                        className="flex items-center  border-border px-3"
                         style={{ width: columnWidths.hireDate }}>
                         <span className="text-sm text-foreground/80">
                           {formatDate(employee.hireDate)}
